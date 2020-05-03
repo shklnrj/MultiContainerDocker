@@ -13,4 +13,11 @@ after_success:
     - docker build -t shklnrj/multi-server ./server
     - docker build -t shklnrj/multi-worker ./worker
     # login into the docker hub using the credentials
-    
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    # take the images and push the images to docker hub
+    - docker push shklnrj/multi-client
+    - docker push shklnrj/multi-nginx
+    - docker push shklnrj/multi-server
+    - docker push shklnrj/multi-worker
+
+
