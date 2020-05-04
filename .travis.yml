@@ -19,5 +19,16 @@ after_success:
     - docker push shklnrj/multi-nginx
     - docker push shklnrj/multi-server
     - docker push shklnrj/multi-worker
-
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: us-east-1
+    app: multi-docker
+    env: MultiDocker-env
+    bucket-name: elasticbeanstalk-us-east-1-375263320264
+    bucket-path: docker-multi
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
 
